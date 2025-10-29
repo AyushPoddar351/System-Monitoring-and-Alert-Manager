@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: 'console'
+
+receivers:
+  - name: 'console'
+    # Console receiver - alerts will be shown in Alertmanager UI
+    # To enable email, uncomment and configure the email_configs section below
+    
+  # - name: 'email-alert'
+  #   email_configs:
+  #     - to: 'your_email@gmail.com'
+  #       from: 'your_email@gmail.com'
+  #       smarthost: 'smtp.gmail.com:587'
+  #       auth_username: 'your_email@gmail.com'
+  #       auth_identity: 'your_email@gmail.com'
+  #       auth_password: 'your_app_specific_password'

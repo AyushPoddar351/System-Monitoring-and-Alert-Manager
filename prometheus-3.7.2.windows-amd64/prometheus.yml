@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'windows-exporter'
+    static_configs:
+      - targets: ['localhost:9182']
+    params:
+      collect[]:
+        - cpu
+        - memory
+        - logical_disk
+        - net
+        - os
+        - system
+        - process      # Top processes
+        - tcp          # TCP connections
+        - gpu          # GPU metrics

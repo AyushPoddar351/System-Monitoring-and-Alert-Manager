@@ -1,0 +1,29 @@
+groups:
+  - name: system_alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: 100 - (avg(rate(windows_cpu_time_total{mode="idle"}[2m])) * 100) > 85
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU Usage detected"
+          description: "CPU usage is above 85% for more than 1 minute."
+
+      - alert: LowMemory
+        expr: (100 - ((windows_memory_available_bytes / windows_memory_physical_total_bytes) * 100)) > 90
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High Memory Usage"
+          description: "Memory usage above 90% for 2 minutes."
+
+      - alert: DiskAlmostFull
+        expr: windows_logical_disk_free_bytes{volume="C:"} / windows_logical_disk_size_bytes{volume="C:"} * 100 < 20
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Disk almost full"
+          description: "C: drive has less than 20% free space."
